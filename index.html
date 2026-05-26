@@ -52,7 +52,6 @@
       z-index: 0;
     }
 
-    /* NAV — discreto como no modelo */
     nav {
       position: relative;
       z-index: 10;
@@ -70,7 +69,6 @@
       color: #46424f;
     }
 
-    /* HERO */
     main {
       position: relative;
       z-index: 5;
@@ -125,18 +123,28 @@
       margin-bottom: 56px;
     }
 
-    /* CARD ingresso */
-    .ticket-card {
+    /* TICKET — link clicável, tamanho fixo */
+    a.ticket-card {
       display: flex;
       align-items: stretch;
       background: var(--cream);
       color: #1a1820;
       border-radius: 14px;
       overflow: hidden;
-      max-width: 560px;
+      /* tamanho fixo para manter proporção em qualquer tela */
+      width: 520px;
+      height: 160px;
+      flex-shrink: 0;
       margin-bottom: 40px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.45);
+      text-decoration: none;
+      cursor: pointer;
       animation: floatIn 0.8s cubic-bezier(.22,1,.36,1) both;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    a.ticket-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: 0 14px 50px rgba(0,0,0,0.55);
     }
     @keyframes floatIn {
       from { opacity: 0; transform: translateY(22px); }
@@ -144,66 +152,78 @@
     }
 
     .ticket-thumb {
-      width: 130px;
-      min-height: 150px;
+      width: 120px;
       flex-shrink: 0;
       background: linear-gradient(135deg, #f472b6 0%, #818cf8 50%, #38bdf8 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.5rem;
+      font-size: 2.2rem;
     }
 
     .ticket-body {
-      padding: 20px 22px;
+      padding: 16px 18px;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
     }
     .ticket-meta {
-      font-size: 9.5px;
+      font-size: 8px;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: #8a7fa0;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .ticket-title {
-      font-size: 1.15rem;
+      font-size: 1rem;
       font-weight: 800;
       color: #1a1820;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .pills {
       display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-bottom: 14px;
+      flex-wrap: nowrap;
+      gap: 5px;
+      margin-bottom: 10px;
+      overflow: hidden;
     }
-    /* Pills com transparência */
     .pill {
-      font-size: 9px;
+      font-size: 7.5px;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 99px;
       border: 1px solid rgba(210,150,180,0.25);
       color: #c47fa0;
       background: rgba(220,160,190,0.12);
-      backdrop-filter: blur(4px);
+      white-space: nowrap;
+      flex-shrink: 0;
     }
     .ticket-status {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 500;
       color: #8a7fa0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-    /* "breve" em preto */
     .ticket-status strong {
       color: #1a1820;
       font-weight: 800;
     }
 
     .ticket-side {
-      width: 36px;
+      width: 34px;
       flex-shrink: 0;
       background: rgba(232,226,217,0.6);
       display: flex;
@@ -212,19 +232,32 @@
       border-left: 1px dashed rgba(0,0,0,0.08);
     }
     .ticket-side span {
-      font-size: 7.5px;
+      font-size: 6.5px;
       font-weight: 500;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       color: #9a9298;
       writing-mode: vertical-rl;
       line-height: 1;
     }
 
-    /* BOTÃO WHATSAPP */
-    .cta-section {
-      margin-bottom: 48px;
+    /* mobile: ticket em tamanho reduzido mas ainda retangular */
+    @media (max-width: 560px) {
+      a.ticket-card {
+        width: calc(100vw - 48px);
+        height: 130px;
+      }
+      .ticket-thumb {
+        width: 90px;
+        font-size: 1.8rem;
+      }
+      .ticket-body { padding: 12px 14px; }
+      .ticket-title { font-size: 0.88rem; }
+      .pill { font-size: 6.5px; padding: 3px 7px; }
     }
+
+    /* BOTÃO WHATSAPP */
+    .cta-section { margin-bottom: 48px; }
     .cta-label {
       font-size: 13px;
       color: var(--muted);
@@ -267,7 +300,6 @@
       flex-shrink: 0;
     }
 
-    /* FOOTER */
     footer {
       position: relative;
       z-index: 5;
@@ -283,7 +315,6 @@
       nav, main, footer { padding-left: 24px; padding-right: 24px; }
       main { padding-top: 48px; padding-bottom: 48px; }
       h1 { font-size: 2.2rem; }
-      .ticket-thumb { width: 90px; font-size: 2rem; }
     }
   </style>
 </head>
@@ -306,7 +337,8 @@
       Um novo curso da Escola Travessias está a caminho — com a mesma profundidade e rigor que você já conhece. Entre no grupo dos Navegantes e seja o primeiro a saber quando abrir.
     </p>
 
-    <div class="ticket-card">
+    <!-- Ticket clicável -->
+    <a class="ticket-card" href="https://chat.whatsapp.com/JZff5XBT4DK7QbBUrWqjnz" target="_blank" rel="noopener">
       <div class="ticket-thumb">🌑</div>
       <div class="ticket-body">
         <div class="ticket-meta">Escola Travessias · Amanda Avalon</div>
@@ -319,7 +351,7 @@
         <div class="ticket-status"><strong>Lançamento em breve</strong> — grupo aberto</div>
       </div>
       <div class="ticket-side"><span>Quero saber mais</span></div>
-    </div>
+    </a>
 
     <div class="cta-section">
       <p class="cta-label">Garanta seu lugar e fique por dentro de tudo:</p>
