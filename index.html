@@ -26,104 +26,77 @@
     body::before {
       content: '';
       position: fixed;
-      top: -10%;
-      right: -15%;
-      width: 55vw;
-      height: 75vh;
+      top: -10%; right: -15%;
+      width: 55vw; height: 75vh;
       background: radial-gradient(ellipse at center,
-        rgba(236,72,153,0.22) 0%,
-        rgba(99,102,241,0.14) 45%,
-        transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+        rgba(236,72,153,0.22) 0%, rgba(99,102,241,0.14) 45%, transparent 70%);
+      pointer-events: none; z-index: 0;
     }
     body::after {
       content: '';
       position: fixed;
-      bottom: -20%;
-      left: -10%;
-      width: 40vw;
-      height: 50vh;
+      bottom: -20%; left: -10%;
+      width: 40vw; height: 50vh;
       background: radial-gradient(ellipse at center,
-        rgba(56,189,248,0.10) 0%,
-        rgba(236,72,153,0.06) 50%,
-        transparent 70%);
-      pointer-events: none;
-      z-index: 0;
+        rgba(56,189,248,0.10) 0%, rgba(236,72,153,0.06) 50%, transparent 70%);
+      pointer-events: none; z-index: 0;
     }
 
     nav {
-      position: relative;
-      z-index: 10;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: relative; z-index: 10;
+      display: flex; align-items: center;
       padding: 24px 48px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
     .nav-brand {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
+      font-size: 10px; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
       color: #46424f;
     }
 
     main {
-      position: relative;
-      z-index: 5;
+      position: relative; z-index: 5;
       min-height: calc(100vh - 73px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: flex; flex-direction: column; justify-content: center;
       padding: 80px 48px 60px;
       max-width: 1200px;
     }
 
     .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: flex; align-items: center; gap: 10px;
       margin-bottom: 36px;
     }
     .eyebrow-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
+      width: 6px; height: 6px; border-radius: 50%;
       background: linear-gradient(135deg, #ec4899, #38bdf8);
       animation: pulse 2.4s ease-in-out infinite;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.7); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
     }
     .eyebrow-text {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-size: 11px; font-weight: 500;
+      letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--muted);
     }
 
     h1 {
       font-weight: 800;
       font-size: clamp(2.6rem, 5.5vw, 5rem);
-      line-height: 1.05;
-      color: var(--cream);
-      max-width: 780px;
-      margin-bottom: 28px;
+      line-height: 1.05; color: var(--cream);
+      max-width: 780px; margin-bottom: 28px;
       letter-spacing: -0.02em;
     }
 
     .subtitle {
       font-size: clamp(0.95rem, 1.6vw, 1.1rem);
-      font-weight: 300;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.65;
+      font-weight: 300; color: var(--muted);
+      max-width: 520px; line-height: 1.65;
       margin-bottom: 56px;
     }
 
-    /* TICKET — link clicável, tamanho fixo */
+    /* ── TICKET ── */
     a.ticket-card {
       display: flex;
       align-items: stretch;
@@ -131,10 +104,11 @@
       color: #1a1820;
       border-radius: 14px;
       overflow: hidden;
-      /* tamanho fixo para manter proporção em qualquer tela */
-      width: 520px;
-      height: 160px;
-      flex-shrink: 0;
+      max-width: 540px;         /* nunca ultrapassa */
+      width: 100%;
+      /* altura: cresce com conteúdo, mas limitada a ~2 linhas de pills */
+      min-height: 150px;
+      max-height: 200px;
       margin-bottom: 40px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.45);
       text-decoration: none;
@@ -155,129 +129,97 @@
       width: 120px;
       flex-shrink: 0;
       background: linear-gradient(135deg, #f472b6 0%, #818cf8 50%, #38bdf8 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       font-size: 2.2rem;
     }
 
     .ticket-body {
       padding: 16px 18px;
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
+      display: flex; flex-direction: column; justify-content: center;
+      min-width: 0; /* impede overflow no flex */
     }
+
     .ticket-meta {
-      font-size: 8px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #8a7fa0;
-      margin-bottom: 6px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 8px; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: #8a7fa0; margin-bottom: 5px;
     }
     .ticket-title {
-      font-size: 1rem;
-      font-weight: 800;
-      color: #1a1820;
-      margin-bottom: 10px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 0.95rem; font-weight: 800;
+      color: #1a1820; margin-bottom: 9px;
     }
+
+    /* pills: wrap livre, mas max 2 linhas via max-height + overflow */
     .pills {
       display: flex;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
       gap: 5px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
+      /* 2 linhas: cada linha ~20px + 5px gap = 45px */
+      max-height: 50px;
       overflow: hidden;
     }
     .pill {
-      font-size: 7.5px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 99px;
+      font-size: 7.5px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 8px; border-radius: 99px;
       border: 1px solid rgba(210,150,180,0.25);
       color: #c47fa0;
       background: rgba(220,160,190,0.12);
       white-space: nowrap;
-      flex-shrink: 0;
     }
+
     .ticket-status {
-      font-size: 11px;
-      font-weight: 500;
+      font-size: 11px; font-weight: 500;
       color: #8a7fa0;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
     .ticket-status strong {
-      color: #1a1820;
-      font-weight: 800;
+      color: #1a1820; font-weight: 800;
     }
 
     .ticket-side {
-      width: 34px;
-      flex-shrink: 0;
+      width: 34px; flex-shrink: 0;
       background: rgba(232,226,217,0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       border-left: 1px dashed rgba(0,0,0,0.08);
     }
     .ticket-side span {
-      font-size: 6.5px;
-      font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 6.5px; font-weight: 500;
+      letter-spacing: 0.16em; text-transform: uppercase;
       color: #9a9298;
-      writing-mode: vertical-rl;
-      line-height: 1;
+      writing-mode: vertical-rl; line-height: 1;
     }
 
-    /* mobile: ticket em tamanho reduzido mas ainda retangular */
+    /* ── mobile ── */
     @media (max-width: 560px) {
+      nav, main, footer { padding-left: 24px; padding-right: 24px; }
+      main { padding-top: 48px; padding-bottom: 48px; }
+      h1 { font-size: 2.2rem; }
+
       a.ticket-card {
-        width: calc(100vw - 48px);
-        height: 130px;
+        max-width: 100%;
+        min-height: 140px;
+        max-height: 210px;
       }
-      .ticket-thumb {
-        width: 90px;
-        font-size: 1.8rem;
-      }
-      .ticket-body { padding: 12px 14px; }
+      .ticket-thumb { width: 90px; font-size: 1.8rem; }
+      .ticket-body { padding: 12px 12px; }
       .ticket-title { font-size: 0.88rem; }
-      .pill { font-size: 6.5px; padding: 3px 7px; }
     }
 
-    /* BOTÃO WHATSAPP */
+    /* ── CTA ── */
     .cta-section { margin-bottom: 48px; }
     .cta-label {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 16px;
-      font-weight: 400;
+      font-size: 13px; color: var(--muted);
+      margin-bottom: 16px; font-weight: 400;
     }
     .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 15px 32px;
-      border-radius: 99px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 32px; border-radius: 99px; border: none;
+      cursor: pointer; text-decoration: none;
       font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      font-size: 11px; font-weight: 800;
+      letter-spacing: 0.16em; text-transform: uppercase;
       color: #fff;
       background: linear-gradient(100deg, #ec4899 0%, #818cf8 50%, #38bdf8 100%);
       background-size: 200% 200%;
@@ -294,27 +236,15 @@
       transform: scale(1.04);
       box-shadow: 0 6px 32px rgba(129,140,248,0.4);
     }
-    .btn-whatsapp svg {
-      width: 16px; height: 16px;
-      fill: #fff;
-      flex-shrink: 0;
-    }
+    .btn-whatsapp svg { width: 16px; height: 16px; fill: #fff; flex-shrink: 0; }
 
     footer {
-      position: relative;
-      z-index: 5;
+      position: relative; z-index: 5;
       text-align: center;
       padding: 28px 48px;
       border-top: 1px solid rgba(255,255,255,0.05);
-      font-size: 11px;
-      color: #4a4555;
+      font-size: 11px; color: #4a4555;
       letter-spacing: 0.05em;
-    }
-
-    @media (max-width: 640px) {
-      nav, main, footer { padding-left: 24px; padding-right: 24px; }
-      main { padding-top: 48px; padding-bottom: 48px; }
-      h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
@@ -337,7 +267,6 @@
       Um novo curso da Escola Travessias está a caminho — com a mesma profundidade e rigor que você já conhece. Entre no grupo dos Navegantes e seja o primeiro a saber quando abrir.
     </p>
 
-    <!-- Ticket clicável -->
     <a class="ticket-card" href="https://chat.whatsapp.com/JZff5XBT4DK7QbBUrWqjnz" target="_blank" rel="noopener">
       <div class="ticket-thumb">🌑</div>
       <div class="ticket-body">
